@@ -14,6 +14,7 @@ function App() {
   
   return (
     <div className="app">
+    <h2>Hola</h2>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login usuario={sesion}/>}/>
