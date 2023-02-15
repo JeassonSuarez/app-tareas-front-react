@@ -1,0 +1,24 @@
+.div-login{
+    background-color: var(--back-negro);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--padding);
+    gap: var(--gap);
+}
+
+.form-login{
+    width: 50%;
+}
+
+.div-login>h2{
+    color: white;
+}
+
+.form-login>button{
+    justify-content: center;
+    align-items: center;
+}

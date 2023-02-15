@@ -1,0 +1,104 @@
+.div-form-tarea{
+    background-color: rgba(0, 0, 0, 0.51);
+    display: none;
+}
+
+.div-form-tarea-active{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+}
+
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    outline: 1px solid var(--back-negro);
+    padding: var(--padding);
+    background-color: var(--blanco);
+    border-radius: var(--border-radius);
+    margin-top: var(--gap);
+}
+
+.form>h2{
+    margin-bottom: var(--gap);
+}
+
+.form>label{
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.form>input,select{
+    margin-bottom: var(--gap);
+    display: block;
+    width: 100%;
+    padding: var(--gap);
+    outline: 1px solid var(--back-negro);
+    border-radius: .3125rem;
+}
+
+.form>textarea{
+    margin-bottom: var(--gap);
+    display: block;
+    width: 100%;
+    max-width: 100vw;
+    padding: var(--gap);
+    outline: 1px solid var(--back-negro);
+    border-radius: .3125rem;
+}
+
+.form-add{
+    width: 80%;
+}
+
+.btn-cerrar{
+    position: absolute;
+    bottom: var(--padding);
+    left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    font-size: 25px;
+    padding: 15px;
+    background-color: var(--back-negro);
+    color: var(--blanco);
+    transition: all 0.2s ease;
+}
+
+.btn-cerrar:hover{
+    background-color: var(--blanco);
+    color: var(--back-negro);
+}
+
+.btn-crear{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    font-size: 25px;
+    padding: 15px;
+    background-color: var(--verde-succes-claro);
+    color: var(--blanco);
+    transition: all 0.2s ease;
+    outline: 1px solid var(--verde-succes-claro);
+    width: 100%;
+}
+
+.btn-crear:hover{
+    background-color: var(--verde-succes-oscuro);
+    color: var(--blanco);
+}

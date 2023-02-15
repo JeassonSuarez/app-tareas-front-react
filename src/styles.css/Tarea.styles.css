@@ -1,0 +1,71 @@
+.div-tarea{
+    outline: 1px solid var(--back-negro);
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: var(--gap);
+    border-radius: var(--border-radius);
+    min-width: 20.4375rem;
+}  
+
+.div-tarea>h2{
+    width: 100%;
+    border-bottom: 1px solid var(--back-negro);
+    text-align: center;
+    padding-bottom: var(--gap);
+}
+
+.btn-tarea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;    
+    padding: var(--padding);
+    gap: var(--gap);
+    font-size: 25px;
+}
+
+.btn-tarea>svg{
+    width: fit-content;
+    outline: 1px solid var(--blanco);
+    border-radius: var(--border-radius);
+    color: var(--back-negro);
+    background-color: var(--blanco);
+    font-size: 25px;
+    padding: 3px;
+}
+
+.btn-fin{
+    background-color: var(--azul-claro);
+    outline: 1px solid var(--azul-claro);
+    color: var(--blanco);
+    transition: all 0.2s ease;
+}
+
+.btn-fin:hover{
+    background-color: var(--azul-oscuro);
+}
+
+.btn-upd{
+    background-color: var(--azul-claro);
+    outline: 1px solid var(--azul-claro);
+    color: var(--blanco);
+    transition: all 0.2s ease;
+}
+
+.btn-upd:hover{
+    background-color: var(--azul-oscuro);
+}
+.btn-del{
+    background-color: var(--rojo-claro);
+    outline: 1px solid var(--rojo-claro);
+    color: var(--blanco);
+    transition: all 0.2s ease;
+}
+
+.btn-del:hover{
+    background-color: var(--rojo-oscuro);
+}

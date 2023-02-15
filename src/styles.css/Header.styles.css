@@ -1,0 +1,12 @@
+.div-sesion{
+    width: 100%;
+}
+.header{
+    width: 100%;
+    padding: var(--padding);
+    background-color: var(--back-negro);
+    color: var(--letra-blanca);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
