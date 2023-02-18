@@ -143,7 +143,7 @@ const Tarea = ({ data, numtarea, reload }) => {
   }
 
   const finalizarTarea = () => {
-    fetch("http://localhost:3001/finalizar", {
+    fetch("https://app-tareas-back-node-pg-production.up.railway.app/finalizar", {
       type: "no-cors",
       method: "PUT",
       headers: {
