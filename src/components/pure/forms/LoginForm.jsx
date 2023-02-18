@@ -31,6 +31,7 @@ const LoginForm = ({usuario}) => {
     })
       .then((respuesta) => respuesta.json())
       .then((respuesta) => {
+        console.log(respuesta);
           if(respuesta.auth) 
           {
             // console.log(respuesta);
