@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/app-tareas-front-react/static/css/main.6638c2ca.css",
+    "main.css": "/app-tareas-front-react/static/css/main.6172162d.css",
     "main.js": "/app-tareas-front-react/static/js/main.3cdd5af8.js",
     "index.html": "/app-tareas-front-react/index.html",
-    "main.6638c2ca.css.map": "/app-tareas-front-react/static/css/main.6638c2ca.css.map",
+    "main.6172162d.css.map": "/app-tareas-front-react/static/css/main.6172162d.css.map",
     "main.3cdd5af8.js.map": "/app-tareas-front-react/static/js/main.3cdd5af8.js.map"
   },
   "entrypoints": [
-    "static/css/main.6638c2ca.css",
+    "static/css/main.6172162d.css",
     "static/js/main.3cdd5af8.js"
   ]
 }
