@@ -8,6 +8,7 @@
     gap: var(--gap);
     border-radius: var(--border-radius);
     min-width: 20.4375rem;
+    max-width: 21rem;
 }  
 
 .div-tarea>h2{
