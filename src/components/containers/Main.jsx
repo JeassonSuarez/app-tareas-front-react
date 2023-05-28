@@ -28,8 +28,8 @@ const Main = ({ usuario }) => {
           
         });
     }
-    console.log('cambio');
-  }, [usuario, reload]);
+    console.log('cambio', listaTareas);
+  });
 
   const abrirFormulario = () => {
     // console.log('hola');
@@ -61,15 +61,37 @@ const Main = ({ usuario }) => {
             setReload(true);
           }
         });
+    }else{
+      console.log(nuevaTarea);
+      setListaTareas([...listaTareas, nuevaTarea])
     }
     // setListaTareas([...listaTareas, nuevaTarea]);
   };
+
+
+  const aTarea = (accion, ntarea)=>{
+    if (accion==='p') {
+      listaTareas[ntarea].prioridad === '1' ? listaTareas[ntarea].prioridad ='2' : listaTareas[ntarea].prioridad === '2' ? listaTareas[ntarea].prioridad = '3' : listaTareas[ntarea].prioridad = '1'    
+    }else if (accion ==='e') {
+      listaTareas.splice(ntarea, 1);
+    }else{
+      let fechaHoy = new Date();
+      
+      let anio = fechaHoy.getFullYear();
+      let mes = String(fechaHoy.getMonth() + 1).padStart(2, "0");
+      let dia = String(fechaHoy.getDate()).padStart(2, "0");
+      
+      listaTareas[ntarea].fFinalizacion = `${anio}-${mes}-${dia}`;
+    }
+    setListaTareas([...listaTareas]);  
+  }
+
 
   return (
     <main className="main">
       {listaTareas.length > 0 ? (
         listaTareas.map((t, i) => {
-          return <Tarea data={t} key={i} numtarea={i} reload={setReload}/>;
+          return <Tarea data={t} key={i} numtarea={i} reload={setReload} usuario = {usuario} aTarea={aTarea} />;
         })
       ) : (
         <h2>No hay tareas aun...</h2>

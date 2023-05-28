@@ -14,6 +14,12 @@ function App() {
   
   return (
     <div className="app">
+    
+    <BrowserRouter basename="/demo">
+      <Routes>
+        <Route path='/' element={<Sesion usuario={usuario}/>}/>
+      </Routes>
+    </BrowserRouter>    
     <BrowserRouter basename="/app-tareas-front-react">
       <Routes>
         <Route path='/' element={<Login usuario={sesion}/>}/>

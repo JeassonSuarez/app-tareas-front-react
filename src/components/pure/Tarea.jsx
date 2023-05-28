@@ -9,11 +9,12 @@ import {
   FcMediumPriority,
 } from "react-icons/fc";
 
-const Tarea = ({ data, numtarea, reload }) => {
+const Tarea = ({ data, numtarea, reload, usuario, aTarea}) => {
   const [prioridad, setPrioridad] = useState(null);
   const [stylesPrioridad, setStylesPrioridad] = useState(null);
 
   useEffect(() => {
+    console.log(data);
     setPrioridad(parseInt(data.prioridad));
   }, [data]);
 
@@ -69,6 +70,9 @@ const Tarea = ({ data, numtarea, reload }) => {
       });
       cambiarEPrioridad(1, data.idtarea)
     }
+    aTarea('p', numtarea);
+    // listaTareas[numtarea].prioridad === '1' ? listaTareas[numtarea].prioridad ='2' : listaTareas[numtarea].prioridad === '2' ? listaTareas[numtarea].prioridad = '3' : listaTareas[numtarea].prioridad = '1'
+    // reload(true)
   };
 
   const hoverEffectEnter = () => {
@@ -122,87 +126,101 @@ const Tarea = ({ data, numtarea, reload }) => {
   };
 
   const cambiarEPrioridad = (p, idt) => {
-    fetch("https://app-tareas-back-node-pg-production.up.railway.app/cambiarPrioridad", {
-      type: "no-cors",
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        p,idt
-      }),
-    })
-      .then((respuesta) => respuesta.json())
-      .then((respuesta) => {
-          // console.log(respuesta);
-          // alert(respuesta.mensaje)
-          if (respuesta.cp) {
-            reload(true)
-          }
-        });
+    if (usuario) {
+      fetch("https://app-tareas-back-node-pg-production.up.railway.app/cambiarPrioridad", {
+        type: "no-cors",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          p,idt
+        }),
+      })
+        .then((respuesta) => respuesta.json())
+        .then((respuesta) => {
+            // console.log(respuesta);
+            // alert(respuesta.mensaje)
+            if (respuesta.cp) {
+              reload(true)
+            }
+          });
+    }
   }
 
   const finalizarTarea = () => {
-    fetch("https://app-tareas-back-node-pg-production.up.railway.app/finalizar", {
-      type: "no-cors",
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((respuesta) => respuesta.json())
-      .then((respuesta) => {
-          console.log(respuesta);
-          alert(respuesta.mensaje)
-          if (respuesta.fin) {
-            reload(true)
-          }
-        });
+    if (usuario) {
+      fetch("https://app-tareas-back-node-pg-production.up.railway.app/finalizar", {
+        type: "no-cors",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((respuesta) => respuesta.json())
+        .then((respuesta) => {
+            console.log(respuesta);
+            alert(respuesta.mensaje)
+            if (respuesta.fin) {
+              reload(true)
+            }
+          });
+    }else{
+      aTarea("f", numtarea);
+    }
   }
 
   const eliminarTarea = () => {
-    fetch("https://app-tareas-back-node-pg-production.up.railway.app/eliminar", {
-      type: "no-cors",
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((respuesta) => respuesta.json())
-      .then((respuesta) => {
-          console.log(respuesta);
-          alert(respuesta.mensaje)
-          if (respuesta.del) {
-            reload(true)
-          }
-        });
+    if (usuario) {
+      fetch("https://app-tareas-back-node-pg-production.up.railway.app/eliminar", {
+        type: "no-cors",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((respuesta) => respuesta.json())
+        .then((respuesta) => {
+            console.log(respuesta);
+            alert(respuesta.mensaje)
+            if (respuesta.del) {
+              reload(true)
+            }
+          });
+    }else{
+      aTarea('e', numtarea)
+      // console.log("Eliminando tarea", listaTareas[numtarea]);
+      // listaTareas.splice(numtarea, 1);
+      // reload(true)
+    }
   }
 
   return (
     <div className="div-tarea">
       <h2>
-        {numtarea + 1}) {data.ntarea}
+        {numtarea + 1}) {data.ntarea || data.titulo}
       </h2>
       <p>{data.categoria}</p>
       <p>{data.descripcion}</p>
       <p>
-        Creacion: {new Date(data.fcreacion).getFullYear()}-
-        {new Date(data.fcreacion).getMonth()+1}-
-        {new Date(data.fcreacion).getDate()}
+        Creacion: {usuario ? `${new Date(data.fcreacion).getFullYear()}-
+        ${new Date(data.fcreacion).getMonth()+1}-
+        ${new Date(data.fcreacion).getDate()}` :data.fCreacion} 
       </p>
       <p>
-        Entregar: {new Date(data.fentrega).getFullYear()}-
-        {new Date(data.fentrega).getMonth()+1}-{new Date(data.fentrega).getDate()}
+        Entregar: {`${usuario ? new Date(data.fentrega).getFullYear()+"-"+(new Date(data.fentrega).getMonth()+1)+"-"+new Date(data.fentrega).getDate() : data.fEntrega}`}
+
       </p>
       <p>
         Finalizada:{" "}
-        {data.ffinalizacion === null
+        {usuario && data.ffinalizacion === null
           ? "Por entregar"
-          : `${new Date(data.ffinalizacion).getFullYear()}-${new Date(
+          : usuario && data.ffinalizacion !== null ? `${new Date(data.ffinalizacion).getFullYear()}-${new Date(
               data.ffinalizacion
-            ).getMonth()+1}-${new Date(data.ffinalizacion).getDate()}`}
+            ).getMonth()+1}-${new Date(data.ffinalizacion).getDate()}`
+            : !usuario && data.fFinalizacion === "" ? "Por entregar" : data.fFinalizacion}
       </p>
       <p>
         Prioridad:{" "}
@@ -239,7 +257,7 @@ const Tarea = ({ data, numtarea, reload }) => {
       >
         {prioridad === 1 ? (
           <FcLowPriority />
-        ) : prioridad === 2 ? (
+          ) : prioridad === 2 ? (
           <FcMediumPriority />
         ) : (
           <FcHighPriority />
